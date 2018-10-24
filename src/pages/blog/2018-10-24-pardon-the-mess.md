@@ -6,4 +6,8 @@ description: UNDER CONSTRUCTION
 tags:
   - under_construction
 ---
-Welcome to Cresten St.Clair's pizza world. Enjoy your stay.
+Welcome to Cresten St.Clair's pizza world. Enjoy your stay!
+
+
+
+I'm currently cleaning up the netlify default stuff, but so far Netlify and GatsbyJS look AMAZING!
