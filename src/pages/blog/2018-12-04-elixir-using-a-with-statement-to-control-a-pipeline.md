@@ -1,6 +1,6 @@
 ---
 templateKey: blog-post
-title: 'Elixir: Using a with statement to control a pipeline.'
+title: 'Elixir: Using a with statement to control a pipeline'
 date: 2018-12-04T18:54:13.868Z
 description: A quick look and example using Elixir's `with` statement.
 tags:
@@ -10,7 +10,7 @@ tags:
   - syntax
   - pipelines
 ---
-I was watching an elixirconf talk the other day about pipelines and how to handle long pipelines and I found some really interesting / useful code!
+I was watching an elixirconf talk the other day about pipelines and how to handle long pipelines and I learned a really useful coding technique!
 
 
 I typed up this module to demonstrate:
