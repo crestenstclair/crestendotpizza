@@ -1,8 +1,8 @@
 ---
 templateKey: blog-post
-title: KSonnet: Unit testing KSonnet components 
+title: KSonnet Unit testing KSonnet components 
 date: 2018-12-09T18:54:13.868Z
-description: A quick look t unit testing KSonnet components
+description: A quick look at unit testing KSonnet components
 tags:
   - ksonnet
   - jsonnet
