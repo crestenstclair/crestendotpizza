@@ -7,7 +7,7 @@ const Navbar = () => (
     <div className="container">
       <div className="navbar-start">
         <Link className="navbar-item" to="/">
-          Home
+          Cresten St. Clair
         </Link>
         <Link className="navbar-item" to="/about">
           About
