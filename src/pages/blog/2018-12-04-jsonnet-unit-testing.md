@@ -10,6 +10,31 @@ tags:
   - testing
 ---
 
+## NOTE
+
+My Ksonnet testing strategy has evolved from what I detail in this article. I will publish another one with new code eventually.
+
+A quick summary of my new strategy:
+
+- Use `jest`, and place a `__tests__` folder in my components folder
+- Write a test helper that will emit code a bit like this:
+```javascript
+const fileContents =`
+    local componentToTest = import '${componentName}.libsonnet';
+    local params = ${escapedParams};
+
+    {
+        component: componentToTest.new({}, params),
+        params: params,
+    }
+    `;
+    
+fs.writeFileSync(fileName, fileContents);
+```
+- Call into the Jsonnet binary and capture the stdout
+- Parse the stdout: `JSON.parse(shell.stdout)`
+- Run tests against the output
+
 ## Why test KSonnet components?
 Whenever we develop code, we want to write tests to make it easy to refactor components, add new modules, and remove old ones. It is important that we verify that we are able to give the same input, and get the same output. We do not want to break more than we fix!
 
