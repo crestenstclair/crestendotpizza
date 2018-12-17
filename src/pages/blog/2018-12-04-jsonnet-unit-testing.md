@@ -17,7 +17,7 @@ My Ksonnet testing strategy has evolved from what I detail in this article. I wi
 A quick summary of my new strategy:
 
 - Use `jest`, and place a `__tests__` folder in my components folder
-- Write a test helper that will emit code a bit like this:
+- Write a test helper that will emit a file that will build the component you are testing with all required parameters:
 ```javascript
 const fileContents =`
     local componentToTest = import '${componentName}.libsonnet';
@@ -29,7 +29,7 @@ const fileContents =`
     }
     `;
     
-fs.writeFileSync(fileName, fileContents);
+fs.writeFileSync(fileName, fileContents);`
 ```
 - Call into the Jsonnet binary and capture the stdout
 - Parse the stdout: `JSON.parse(shell.stdout)`
