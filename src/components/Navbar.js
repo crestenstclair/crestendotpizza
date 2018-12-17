@@ -7,6 +7,9 @@ const Navbar = () => (
   <nav className="navbar is-transparent">
     <div className="container">
       <div className="navbar-start">
+        <Link className="navbar-item" to="/">
+          Home
+        </Link>
         <Link className="navbar-item" to="/about">
           About
         </Link>
@@ -14,7 +17,7 @@ const Navbar = () => (
       <div className="navbar-end">
         <a
           className="navbar-item"
-          href="https://github.com/AustinGreen/gatsby-netlify-cms-boilerplate"
+          href="https://github.com/honkycat/crestendotpizza"
           target="_blank"
           rel="noopener noreferrer"
         >
