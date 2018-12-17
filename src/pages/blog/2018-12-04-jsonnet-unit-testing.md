@@ -29,7 +29,7 @@ const fileContents =`
     }
     `;
     
-fs.writeFileSync(fileName, fileContents);`
+fs.writeFileSync(fileName, fileContents);
 ```
 - Call into the Jsonnet binary and capture the stdout
 - Parse the stdout: `JSON.parse(shell.stdout)`
