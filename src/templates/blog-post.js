@@ -43,8 +43,8 @@ export const BlogPostTemplate = ({
         </div>
       </div>
     </section>
-  )
-}
+  );
+};
 
 BlogPostTemplate.propTypes = {
   content: PropTypes.node.isRequired,
@@ -54,8 +54,9 @@ BlogPostTemplate.propTypes = {
   helmet: PropTypes.instanceOf(Helmet),
 }
 
-const BlogPost = ({ data }) => {
-  const { markdownRemark: post } = data
+const BlogPost = (allData) => {
+    const { markdownRemark: post } = allData.data
+    console.log(allData)
 
   return (
     <Layout>

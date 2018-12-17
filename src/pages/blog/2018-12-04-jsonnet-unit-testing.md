@@ -33,7 +33,7 @@ Finally, we make sure to output our component instance and test suite results. O
 
 Example component and test. `k.libsonnet` and the ksonnet `components` directory must be in our jsonnet path.
 
-```
+```javascript
 # components/example.libsonnet
 // Import KSonnet library
 local k = import "k.libsonnet";
@@ -43,7 +43,6 @@ local container = k.extensions.v1beta1.deployment.mixin.spec.template.spec.conta
 local depl = k.extensions.v1beta1.deployment;
 
 // Define containers
-
     
 local new(_env, _params) = (
 local params = _env + _params.components.example;
@@ -60,7 +59,7 @@ local params = _env + _params.components.example;
 local componentToTest = import "./example.libsonnet";
 local name = "example_name";
 local image = "example_image";
-local replicas = 3;
+local replicas = "3";
 local instance = componentToTest.new({}, parmas);
 
 local params = {
@@ -76,11 +75,7 @@ local params = {
 local runTests(params) = (
   local testResults = 
     // Check to ensure deployment name matches up
-    std.assertEqual(instance.spec.metadata.name, name) &&
-    // Check to ensure container image matches up
-    std.assertEqual(instance.spec.template.spec.containers[0].image, image) &&
-    //Check to ensure container name matches up.
-    std.assertEqual(instance.spec.template.spec.containers[0].name, name);
+    std.assertEqual(instance.spec.metadata.name, name)
   testResults
 );
 
@@ -99,7 +94,7 @@ We give our test suite access to the jsonnet files available on `components` by 
 
 Test runner code here:
 
-```
+```python
 #! python
 from invoke import task
 from glob import glob

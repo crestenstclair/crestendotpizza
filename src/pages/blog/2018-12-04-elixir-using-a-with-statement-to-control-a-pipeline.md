@@ -15,7 +15,7 @@ I was watching an elixirconf talk the other day about pipelines and how to handl
 
 I typed up this module to demonstrate:
 
-```
+```elixir
 defmodule Brunch do
   def make_bloody_mary(missing_ingredient) do
     IO.inspect("Making Brunch:")
