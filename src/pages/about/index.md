@@ -2,10 +2,10 @@
 templateKey: about-page
 title: About Me
 ---
-### Hey friend! I'm Cresten St. Clair! Nice to meet you. :)
+### Greetings friend! I am Cresten St. Clair! Nice to meet you. :)
 
 
-Cresten St. Clair is a full stack programmer with a battle-hardened tool kit stuffed full of pragmatic and interesting tools. His current programming language of choice is Elixir, his next two languages to learn are Rust and ReasonML.
+Cresten St. Clair is a full stack programmer and hot sauce enthusiast with a battle-hardened tool kit stuffed full of pragmatic and interesting tools. His current programming language of choice is Elixir, his next two languages to learn are Rust and ReasonML.
 
 Linkedin: https://www.linkedin.com/in/cresten-st-clair-80042115/
 
