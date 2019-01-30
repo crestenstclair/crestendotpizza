@@ -15,7 +15,7 @@ I have a method for learning new things. I've always been a heavy reader and tha
 
 I realize there are better ways to learn but I feel that just picking a book and completing the exercises within helps me avoid decision fatigue and makes sure I am learning from sources that have at LEAST been reviewed by an editor.
 
-I find learning things from bottom up better than fumbling around trying to find my own path. You can only fake it for so long before you have to dive in and learn from first principles.
+I find learning things from first principles better than fumbling around trying to find my own path.
 
 I've not worked out my goals yet but I do have a nice reading list.
 
@@ -31,22 +31,22 @@ I have a long reading list and a nice pile of tsundoku to look forward to!
 
 I'm turning 30 this year. I have always wanted to be a game developer.
 
-I studed computer science in college with the intention of graduating and taking a gamedev job.
+I studied computer science in college with the intention of graduating and taking a game dev job.
 
-One of my core values is valuing other people's advice and opinions. Because of this, I listened to the people around me when they told me that going into gamedev is youthful folly. They were probably right: I live a pretty amazing life right now.
+One of my core values is valuing other people's advice and opinions. Because of this, I listened to the people around me when they told me that going into game dev is youthful folly. They were probably right: I live a pretty amazing life right now.
 
-But, I've not been able to get that monkey off my back. I still love video games and I want to be more creative. I think now that I'm older and a teeny bit wiser, I can start to think about taking a risk and going into gamedev.
+But, I've not been able to get that monkey off my back. I still love video games and I want to be more creative. I think now that I am older, more secure financially, more mentally stable, a and a teeny bit wiser, I can start to think about taking a risk and going into game dev.
 
-And to put it in a bit more pragmatic terms: I think my webdev gig is great, but I think experience developing low-level, real-time, graphically intense applications is going to be what's going to look good on my CV next.
+And to put it in a bit more pragmatic terms: I think my web dev gig is great, but I think experience developing low-level, real-time, graphically intense applications is going to be what's going to look good on my CV next.
 
-I have chosen to use Unreal engine because I like C++ and macros.
+I have chosen to use the Unreal engine because I like C++ and macros.
 
-Specifically I am going to read:
+Specifically, I am going to read:
 
 - Learning C++ By Building Games with Unreal
 - Mastering Game Development with Unreal Engine 4
-- OpenGL 4 Shanding Langauge Cookbook
-- Realtime 3d Graphics with WebGL
+- OpenGL 4 Shading Langauge Cookbook
+- Real-time 3d Graphics with WebGL
 - The Ray Tracer Challenge
 
 # Mathematics for Gamedev
@@ -91,7 +91,7 @@ Reading list:
 
 I'm a sucker for a new coat of paint over an existing, mature ecosystem.
 
-ReasonML is exciting. It lets me side-step javascript while still being able to use it's great tooling, especially ReactJS. It looks promising for back-end development as well. Oni2 and Revery look like the native application toolkit people have been looking for a long time.
+ReasonML is exciting. It lets me side-step javascript while still being able to use its great tooling, especially ReactJS. It looks promising for back-end development as well. Oni2 and Revery look like the native application toolkit people have been looking for a long time.
 
 Hard to have a reading list for this one, since it is so new. And of ALL of my goals, this is the one I probably will not get to.
 
@@ -101,7 +101,7 @@ Hard to have a reading list for this one, since it is so new. And of ALL of my g
 
 # Blogging / Social Media Marketing
 
-For the last few years I have shunned social media.
+For the last few years, I have shunned social media.
 
 Now I think it would behoove me to nurture a social media presence and establish myself as an expert in a few domains. I already write a LOT at work for internal documentation so I just have to apply it to topics I'm interested in.
 
