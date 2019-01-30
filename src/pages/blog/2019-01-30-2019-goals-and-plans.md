@@ -9,6 +9,8 @@ tags:
   - reading
 ---
 
+Questions? Comments? Twitter discussion here: https://twitter.com/h0nkyc41/status/1090751831133679616
+
 I have a method for learning new things. I've always been a heavy reader and that is how I learn.
 
 I realize there are better ways to learn but I feel that just picking a book and completing the exercises within helps me avoid decision fatigue and makes sure I am learning from sources that have at LEAST been reviewed by an editor.
