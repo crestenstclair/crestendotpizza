@@ -49,7 +49,7 @@ Specifically I am going to read:
 
 # Mathematics for Gamedev
 
-I grew up in a small town, and I BASICALLY have an 8th grade math education. I need to learn more math before I can become a game developer.
+To put it gently: I'm rusty at this stuff! It's been almost a decade! I need to brush up if I want to be taken seriously.
 
 Mathematics, specifically reading and doing exercise in the books:
 
