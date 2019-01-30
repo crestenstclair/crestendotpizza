@@ -85,6 +85,18 @@ Reading list:
 - The Rust Programming Language
 - The Ray Tracer Challenge
 
+# ReasonML
+
+I'm a sucker for a new coat of paint over an existing, mature ecosystem.
+
+ReasonML is exciting. It lets me side-step javascript while still being able to use it's great tooling, especially ReactJS. It looks promising for back-end development as well. Oni2 and Revery look like the native application toolkit people have been looking for a long time.
+
+Hard to have a reading list for this one, since it is so new. And of ALL of my goals, this is the one I probably will not get to.
+
+- Web Development with ReasonML
+- Exploring ReasonML with functional programming
+- Oni2 / Revery codebases
+
 # Blogging / Social Media Marketing
 
 For the last few years I have shunned social media.
