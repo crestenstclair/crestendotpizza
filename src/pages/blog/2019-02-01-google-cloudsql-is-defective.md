@@ -8,7 +8,7 @@ tags:
   - CloudSQL
 ---
 
-Questions? Comments? Twitter discussion here: https://twitter.com/h0nkyc41/status/1090751831133679616
+Questions? Comments? [Twitter discussion here](https://twitter.com/h0nkyc41/status/1091440341381599232)
 
 If you are using Google CloudSQL, you are one command away from losing everything:
 
