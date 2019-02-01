@@ -39,6 +39,8 @@ But, I've not been able to get that monkey off my back. I still love video games
 
 And to put it in a bit more pragmatic terms: I think my web dev gig is great, but I think experience developing low-level, real-time, graphically intense applications is going to be what's going to look good on my CV next.
 
+It will be a WHILE before I make this leap, but I think it's a good goal to aim for going into the next year.
+
 I have chosen to use the Unreal engine because I like C++ and macros.
 
 Specifically, I am going to read:
