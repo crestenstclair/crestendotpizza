@@ -1,12 +1,11 @@
 ---
 templateKey: blog-post
 title: "Google CloudSQL is a defective product" 
-date: 2019-01-30T18:54:13.868Z
+date: 2019-02-01T18:54:13.868Z
 description: If you are using Google CloudSQL backups without exporting, you are one click away from disaster.
 tags:
-  - plans
-  - goals
-  - reading
+  - DevOps
+  - CloudSQL
 ---
 
 Questions? Comments? Twitter discussion here: https://twitter.com/h0nkyc41/status/1090751831133679616
