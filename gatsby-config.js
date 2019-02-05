@@ -2,7 +2,13 @@ module.exports = {
     siteMetadata: {
         title: 'Gatsby + Netlify CMS Starter',
     },
-    plugins: [
+    plugins: [{
+            resolve: `gatsby-plugin-google-analytics`,
+            options: {
+                trackingId: "UA-133859287-1",
+                cookieDomain: "cresten.pizza",
+            },
+        },
         'gatsby-plugin-react-helmet',
         'gatsby-plugin-sass',
         {
@@ -24,15 +30,13 @@ module.exports = {
         {
             resolve: 'gatsby-transformer-remark',
             options: {
-                plugins: [
-                    {
-                        resolve: `gatsby-remark-prismjs`,
-                        options: {
-                            classPrefix: "language-",
-                            noInlineHighlight: false
-                        }
+                plugins: [{
+                    resolve: `gatsby-remark-prismjs`,
+                    options: {
+                        classPrefix: "language-",
+                        noInlineHighlight: false
                     }
-                ],
+                }],
             },
         },
         {
