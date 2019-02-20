@@ -27,7 +27,7 @@ I found this book very informative. It was full of great illustrations and photo
 
 All the Answers is the story of Michael Kupperman's father, the once famous quiz kid Joel Kupperman.
 
-I thought this book was honest and beautiful. Kupperman does an excellent job of capturing Joel Kupperman's neuroses. By the end of the book, I felt as if I understood where Joel was coming from, and he acts the way he does.
+I thought this book was honest and beautiful. Kupperman does an excellent job of capturing Joel Kupperman's neuroses. By the end of the book, I felt as if I understood where Joel was coming from, and why he acts the way he does.
 
 I also found the information about jingoist war-time propaganda fun.
 
