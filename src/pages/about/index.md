@@ -11,8 +11,6 @@ Linkedin: https://www.linkedin.com/in/cresten-st-clair-80042115/
 
 Twitter: https://twitter.com/h0nkyc41
 
-Hacker News: https://news.ycombinator.com/user?id=honkycat
-
 Keybase: https://keybase.io/honkycat
 
 Github: https://github.com/honkycat
