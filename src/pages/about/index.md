@@ -9,8 +9,6 @@ Cresten St. Clair is a full stack programmer and hot sauce enthusiast with a bat
 
 Linkedin: https://www.linkedin.com/in/cresten-st-clair-80042115/
 
-Twitter: https://twitter.com/h0nkyc41
+Github: https://github.com/crestenstclair
 
-Keybase: https://keybase.io/honkycat
-
-Github: https://github.com/honkycat
+Instagram: https://www.instagram.com/honkyca1/
