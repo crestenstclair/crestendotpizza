@@ -102,6 +102,8 @@ I want to practice chords. I choose "Chords of the Dead". A confusing menu appea
 
 All of the games are like this. Several layers of menus and bad theming between you and the content you are actually interested in. Again, every step takes longer than it should.
 
+And even if the theming and interface was good, the exercises are of questionable usefulness.
+
 I just want to do guided exercises. Why do we need all of this ugly, noisy, annoying bullshit?
 
 ## Rocksmith Lessons
