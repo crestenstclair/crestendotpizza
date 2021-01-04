@@ -1,3 +1,12 @@
+---
+templateKey: blog-post
+title: "Rocksmith 2014 Review" 
+date: 2021-01-35T18:54:13.868Z
+description: A review of Rocksmith 2014 for PC
+tags:
+  - guitar
+---
+
 # Rocksmith 2014 Review
 
 One of my 2021 New Years resolutions is to play 300 hours of guitar. I have been spending time in Rocksmith, a friend had seen me online, and inquired about my opinion of Rocksmith. 
