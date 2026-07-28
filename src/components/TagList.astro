@@ -1,0 +1,27 @@
+---
+import { tagSlug } from '../lib/content-utils';
+
+interface Props {
+  tags: string[];
+}
+
+const uniqueTags = [
+  ...new Map(Astro.props.tags.map((tag) => [tagSlug(tag), tag])).entries(),
+]
+  .filter(([slug]) => Boolean(slug))
+  .map(([slug, label]) => ({ slug, label }));
+---
+
+{
+  uniqueTags.length > 0 && (
+    <ul class="tag-list" aria-label="Tags">
+      {uniqueTags.map((tag) => (
+        <li>
+          <a class="tag" href={`/tags/${tag.slug}/`}>
+            {tag.label}
+          </a>
+        </li>
+      ))}
+    </ul>
+  )
+}

@@ -1,0 +1,19 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Page not found"
+  description="The requested page could not be found."
+  canonicalPath="/404.html"
+  noindex
+>
+  <section class="not-found">
+    <p class="eyebrow">404</p>
+    <h1>This slice is missing.</h1>
+    <p class="lede">
+      That route does not exist, or the story moved before it reached the oven.
+    </p>
+    <p><a class="button-link" href="/">Return to the latest stories</a></p>
+  </section>
+</BaseLayout>
