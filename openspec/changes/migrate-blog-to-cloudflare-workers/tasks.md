@@ -40,7 +40,7 @@
 - [x] 6.2 Add a content-integrity check that compares migrated body checksums, published counts, titles, dates, slugs, and tag paths with the baseline manifest.
 - [x] 6.3 Add a production-output check that verifies every expected HTML route, canonical tag, RSS entry, sitemap entry, `robots.txt`, custom 404, and absence of drafts.
 - [x] 6.4 Add an internal-link checker for generated HTML and verify that unknown routes return status 404 in a Wrangler local preview.
-- [ ] 6.5 Manually verify representative long-form and code-heavy posts at mobile and desktop widths for keyboard navigation, heading structure, focus visibility, contrast, overflow, and JavaScript-disabled use.
+- [x] 6.5 Manually verify representative long-form and code-heavy posts at mobile and desktop widths for keyboard navigation, heading structure, focus visibility, contrast, overflow, and JavaScript-disabled use.
 - [x] 6.6 Run the complete install, format/lint, type/content check, test, and production-build sequence from a clean checkout and record the passing commands in the README.
 
 ## 7. Configure Cloudflare Delivery
@@ -48,12 +48,12 @@
 - [x] 7.1 Add `wrangler.jsonc` for a static-assets-only Worker with `dist`, `auto-trailing-slash`, `404-page`, a pinned compatibility date, and no Worker script or asset binding.
 - [x] 7.2 Add repository-managed security and cache headers, ensuring the Content Security Policy supports only emitted assets and the optional Cloudflare Web Analytics beacon.
 - [x] 7.3 Deploy the migration branch to a new `workers.dev` preview and verify all known routes, TLS, headers, trailing slashes, cache behavior, and real 404 responses.
-- [ ] 7.4 Configure GitHub Actions with `master` as production, pull-request version previews, build/deploy/version commands, and verify an isolated branch preview without promoting it.
-- [ ] 7.5 Confirm GitHub-managed deployment authorization works and scan committed configuration/history to ensure no API or GitHub credentials were added.
+- [x] 7.4 Configure GitHub Actions with `master` as production, pull-request version previews, build/deploy/version commands, and verify an isolated branch preview without promoting it.
+- [x] 7.5 Confirm GitHub-managed deployment authorization works and scan committed configuration/history to ensure no API or GitHub credentials were added.
 
 ## 8. Verify and Cut Over Production
 
-- [ ] 8.1 Compare the Cloudflare preview against the entire live-site baseline for route status, full prose, titles, dates, tags, internal links, metadata, feeds, assets, headers, and responsive presentation.
+- [x] 8.1 Compare the Cloudflare preview against the entire live-site baseline for route status, full prose, titles, dates, tags, internal links, metadata, feeds, assets, headers, and responsive presentation.
 - [x] 8.2 Record the last known-good Netlify deployment URL, disable Netlify repository auto-publishing, and confirm it remains directly reachable as a rollback target.
 - [x] 8.3 Remove Gatsby/React/Bulma/Sass, Netlify CMS/Git Gateway, `/admin`, Universal Analytics, Netlify configuration, unused starter components, demo assets, and obsolete fonts; then repeat all clean-build and preview checks.
 - [ ] 8.4 Merge the verified migration and confirm GitHub Actions creates the expected production Worker version while `cresten.pizza` still serves the prior site.
