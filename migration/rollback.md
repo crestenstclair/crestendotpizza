@@ -82,12 +82,16 @@ These four checks are a hard cutover gate. Do not attach the domain to the Worke
 
 - Cutover completed at `2026-07-27T18:49:14-07:00` (`2026-07-28T01:49:14Z`).
 - Initial custom-domain version: `99a9a152-83d6-4a4c-ac11-6c857fc37d37`.
+- Production configuration commit: `16f506604910bbbd8f9ef9a5645362db1b1a67cf`.
+- Active workflow-deployed version: `17f0d1a8-a3d6-4e29-9345-a385c74de653`.
+- Production workflow: `https://github.com/crestenstclair/crestendotpizza/actions/runs/30321431235`.
 - Cloudflare replaced the two Netlify CNAMEs with proxied `AAAA 100::` Custom Domain records:
   - `cresten.pizza`, record ID `d94e491c6d83866ee3839ea50ce8b992`
   - `www.cresten.pizza`, record ID `a80bd468749d902860ffa9c52b799edf`
 - Both Google Workspace MX records and the Google site-verification TXT record remained unchanged.
 - `www` and `workers.dev` passed the complete 31-route/25-redirect deployment validator. The apex passed the same 31 exact response-body comparisons, 25 redirects, custom 404, security headers, HTML revalidation, and immutable asset-cache checks when pinned directly to the new Cloudflare edge while the local negative DNS cache expired.
 - Cloudflare and Google public resolvers returned the Cloudflare anycast addresses for both hostnames. No production response contained a Netlify request header.
+- The long-lived local automation shell retained its pre-cutover negative apex lookup cache; this did not affect public DNS, direct edge validation, `www`, or the Worker endpoints.
 - All 25 legacy routes remained HTTP 200 at the direct Netlify fallback URL after cutover.
 - Observation window started at cutover. Do not decommission Netlify before `2026-08-03T18:49:14-07:00`, and only do so after an incident-free review plus explicit owner confirmation.
 
