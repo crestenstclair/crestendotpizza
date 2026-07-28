@@ -27,18 +27,29 @@ Captured on 2026-07-27 before the Astro migration.
 
 The temporary preview may expire and is not a rollback target. Re-run the same validation against an account-owned branch preview before production promotion.
 
+### Account-owned Worker
+
+- Worker: `crestendotpizza`
+- Account preview: `https://crestendotpizza.crestenn.workers.dev`
+- Active deployment version: `ba9f801a-4a43-4e49-b2dc-bef04a2ef821`
+- Isolated migration version: `cdaf7134-f804-4119-b5e3-fb85c2e6a9a1`
+- Isolated alias: `https://migration-crestendotpizza.crestenn.workers.dev`
+- Source commit: `a669ca6`
+- Validation: both account-owned URLs passed all 31 routes, 25 trailing-slash redirects, TLS, exact response-body comparison, Cloudflare/security/cache headers, the fingerprinted stylesheet, and custom 404 behavior on 2026-07-27.
+- Production impact: the version upload did not promote the isolated version, and `cresten.pizza` continued to serve the retained Netlify deployment.
+
 ## Required before production cutover
 
-The proxied record hides its exact target and no authenticated Cloudflare or Netlify dashboard session was available during local implementation. Before changing the domain:
+Before changing the domain:
 
-1. Record the current proxied DNS record type and exact content from Cloudflare DNS.
+1. Confirm the current proxied DNS record still matches the captured value below.
 2. Confirm the Netlify GitHub webhook remains inactive while retaining the verified deploy above.
 3. Confirm the direct Netlify URL still serves source revision `4ddd541`.
 4. Store no dashboard token or credential in this repository.
 
 These four checks are a hard cutover gate. Do not attach the domain to the Worker until the values are recorded below.
 
-- Previous Cloudflare DNS record: **pending authenticated dashboard read**
+- Previous Cloudflare DNS record: apex CNAME `cresten.pizza` → `quirky-turing-d9c652.netlify.com`, proxied, automatic TTL; record ID `db353f84f2235c1a011f17e250210fef`
 - Netlify fallback URL: `https://quirky-turing-d9c652.netlify.app`
 - Netlify site ID: `05c42077-becd-43ad-a511-8da78e81142e`
 
@@ -51,4 +62,4 @@ These four checks are a hard cutover gate. Do not attach the domain to the Worke
 
 ## Rollback after Netlify retirement
 
-Redeploy the recorded last-known-good Cloudflare Worker version. If the regression is source-driven, revert the offending Git commit and allow Workers Builds to deploy the reverted revision.
+Redeploy the recorded last-known-good Cloudflare Worker version. If the regression is source-driven, revert the offending Git commit and allow the GitHub Actions workflow to deploy the reverted revision.

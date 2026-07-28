@@ -36,7 +36,7 @@ tags:
 draft: true
 ```
 
-Dates must be real `YYYY-MM-DD` calendar dates. Slugs are permanent public identifiers; do not change one after publication. Set `draft: false`, run `npm run verify`, then commit and push. Once Workers Builds is connected, a successful push to `master` publishes automatically.
+Dates must be real `YYYY-MM-DD` calendar dates. Slugs are permanent public identifiers; do not change one after publication. Set `draft: false`, run `npm run verify`, then commit and push. A successful push to `master` publishes automatically through the Cloudflare GitHub Actions workflow.
 
 To correct a post, edit its Markdown and push again. To unpublish one without destroying its history, set `draft: true`; the next production build removes its page and all home, tag, RSS, and sitemap references.
 
@@ -83,17 +83,13 @@ The Rocksmith post's impossible `2021-01-35` date was corrected to `2021-01-03` 
 
 The checked-in `wrangler.jsonc` deploys only `dist/` through Workers Static Assets. `_headers` supplies browser security policy, revalidating HTML/feed caching, and immutable caching for fingerprinted assets.
 
-Create or connect a Worker named `crestendotpizza` in Cloudflare Workers Builds with:
+The Worker is named `crestendotpizza`. [`.github/workflows/cloudflare.yml`](.github/workflows/cloudflare.yml) runs the same checks as local verification and then:
 
-- Git repository: `crestenstclair/crestendotpizza`
-- Production branch: `master`
-- Build command: `npm run build`
-- Production deploy command: `npx wrangler deploy`
-- Non-production deploy command: `npx wrangler versions upload`
-- Non-production branch builds: enabled
-- Node version: `24.18.0`
+- uploads a non-production Worker version at `https://pr-N-crestendotpizza.crestenn.workers.dev` for pull request `N`, without changing active traffic;
+- deploys the verified build when a commit reaches `master`; and
+- validates the resulting Cloudflare URL after either operation.
 
-The Worker name must match `wrangler.jsonc`. Cloudflare-managed build authorization belongs in the dashboard; never add an API token to this repository.
+The repository stores `CLOUDFLARE_API_TOKEN` as an Actions secret and `CLOUDFLARE_ACCOUNT_ID` as an Actions variable. The token needs only the scoped Cloudflare Workers permissions used by Wrangler. Never commit either credential; `.env` is ignored and is only for authenticated local administration.
 
 Before attaching `cresten.pizza`, deploy to a `workers.dev` preview and complete the parity/cutover checklist in [`migration/rollback.md`](migration/rollback.md). Do not retire Netlify until the new deployment has completed its observation window.
 

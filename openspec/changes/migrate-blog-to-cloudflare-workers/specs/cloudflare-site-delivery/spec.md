@@ -27,7 +27,7 @@ A successful change to the configured production branch SHALL automatically buil
 
 #### Scenario: Production content change succeeds
 - **WHEN** a valid content commit reaches the production branch
-- **THEN** Workers Builds creates and activates a deployment containing that content without a separate manual deploy step
+- **THEN** the repository deployment workflow creates and activates a Cloudflare deployment containing that content without a separate manual deploy step
 
 #### Scenario: Production build fails
 - **WHEN** a production-branch commit fails validation or compilation
@@ -38,7 +38,7 @@ Non-production branches SHALL be eligible for Cloudflare preview builds at a uni
 
 #### Scenario: Migration pull request is updated
 - **WHEN** a commit is pushed to a configured non-production branch
-- **THEN** Workers Builds produces a previewable version and production remains unchanged
+- **THEN** the repository deployment workflow produces a previewable Cloudflare version and production remains unchanged
 
 ### Requirement: Stable custom-domain delivery
 After acceptance checks pass, `https://cresten.pizza` SHALL resolve to the Cloudflare deployment over valid HTTPS. Public pages MUST identify that origin in canonical URLs and MUST avoid redirect loops or mixed-content dependencies.

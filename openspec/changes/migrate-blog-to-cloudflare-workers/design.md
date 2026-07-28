@@ -74,7 +74,7 @@ Provide two authoring paths:
 1. `npm run new:post -- "Post title"` creates a collision-safe `YYYY-MM-DD-slug.md` file from a template with today's date, an explicit slug, empty tags, and `draft: true`.
 2. The same template can be copied and edited through GitHub's browser editor when a local checkout is inconvenient.
 
-Drafts appear during local development but are excluded from production pages, tags, RSS, and sitemap output. A post is published by completing its metadata, setting `draft: false`, and pushing it. Workers Builds handles the rest. The repository README will document writing, previewing, publishing, correcting, and unpublishing a post.
+Drafts appear during local development but are excluded from production pages, tags, RSS, and sitemap output. A post is published by completing its metadata, setting `draft: false`, and pushing it. The GitHub Actions deployment workflow handles the rest. The repository README will document writing, previewing, publishing, correcting, and unpublishing a post.
 
 Alternatives considered:
 
@@ -108,9 +108,9 @@ Create a `wrangler.jsonc` with a project name matching the Cloudflare project, a
 
 There is deliberately no `main` entry point, assets binding, D1 database, KV namespace, or R2 bucket. Known pages are served as cached assets without invoking Worker code.
 
-Connect the existing GitHub repository to Workers Builds. Keep `master` as the production branch for this migration, use `npm run build` as the build command, and `npx wrangler deploy` as the production deploy command. Enable non-production branch builds so migration and later content pull requests receive isolated preview URLs without changing production.
+Use a repository-owned GitHub Actions workflow for Cloudflare deployment. Keep `master` as the production branch, run `npm run verify` before every deployment, use `npx wrangler deploy` only for `master`, and use `npx wrangler versions upload` with a stable pull-request alias for non-production changes. This gives migration and later content pull requests isolated preview URLs without changing production.
 
-Cloudflare currently recommends Workers Static Assets for new static sites and focuses new platform work there rather than Pages. Workers Builds supplies GitHub-triggered production builds and branch previews, so a separate GitHub Actions deployment workflow is unnecessary.
+Cloudflare currently recommends Workers Static Assets for new static sites and focuses new platform work there rather than Pages. Native Workers Builds requires a separate Cloudflare GitHub App authorization and a user-scoped Builds token; the scoped deployment token available for this migration cannot access that API. A minimal GitHub Actions workflow supplies the same production/preview behavior while keeping the credential in GitHub's encrypted secret store.
 
 ### 7. Validate content and routes before changing DNS
 
@@ -147,7 +147,7 @@ Remove the `UA-133859287-1` integration entirely. If traffic metrics are desired
 3. Copy the seven posts and About page, preserve each explicit slug/body, normalize metadata, and correct the Rocksmith date to `2021-01-03`.
 4. Add content, route, generated-output, and internal-link checks. Verify a clean install can run check and build successfully.
 5. Add Wrangler Static Assets configuration and static response headers. Deploy to a temporary `workers.dev` preview without attaching the production domain.
-6. Connect GitHub to Workers Builds, configure `master` as production, enable branch previews, and confirm failed builds do not alter the active deployment.
+6. Configure the GitHub Actions workflow with `master` as production, enable pull-request version previews, and confirm failed builds do not alter the active deployment.
 7. Compare every manifest route on the preview with the live Netlify site. Review mobile/desktop rendering, keyboard navigation, code blocks, feed output, headers, and the real 404 status.
 8. Attach `cresten.pizza` to the Worker, verify HTTPS and canonical redirects, then optionally enable Cloudflare Web Analytics.
 9. Observe production for one week. Once route/error/traffic checks are clean, remove the Netlify CMS/Git Gateway integration and obsolete site configuration/assets from the maintained codebase; retain Git history as the long-term recovery source.

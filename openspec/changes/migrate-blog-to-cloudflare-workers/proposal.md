@@ -10,7 +10,7 @@ The blog is still built on a 2018 Gatsby 2 beta starter and tied to Netlify CMS/
 - Rebuild the public site as a small, responsive, accessible blog with an index, post pages, tag pages, an About page, readable typography, and syntax-highlighted code.
 - Add canonical metadata, Open Graph metadata, an RSS feed, and a sitemap.
 - Add a low-friction authoring workflow: one command scaffolds a dated Markdown draft, local preview is documented, and pushing a publishable post is sufficient to deploy it.
-- Deploy the generated static assets to Cloudflare Workers, connect the GitHub repository to Workers Builds for production and preview deploys, and attach `cresten.pizza` only after parity checks pass.
+- Deploy the generated static assets to Cloudflare Workers, use GitHub Actions for production and isolated preview deploys, and attach `cresten.pizza` only after parity checks pass.
 - Replace the obsolete Universal Analytics integration with optional Cloudflare Web Analytics.
 - Remove unused starter-business components, demo images, fonts, legacy dependencies, `/admin`, and Netlify-specific files after migration verification.
 - **BREAKING**: Browser-based editing through Netlify CMS/Git Gateway is retired; Markdown in Git becomes the source of truth and publishing interface.
@@ -20,7 +20,7 @@ The blog is still built on a 2018 Gatsby 2 beta starter and tied to Netlify CMS/
 ### New Capabilities
 
 - `blog-content-publishing`: Defines the portable content model, public blog routes, authoring flow, feeds, metadata, and legacy-content/URL preservation behavior.
-- `cloudflare-site-delivery`: Defines reproducible static builds, Cloudflare Workers Static Assets deployment, Git-triggered production and preview releases, custom-domain cutover, security headers, analytics, and rollback behavior.
+- `cloudflare-site-delivery`: Defines reproducible static builds, Cloudflare Workers Static Assets deployment, GitHub Actions-triggered production and preview releases, custom-domain cutover, security headers, analytics, and rollback behavior.
 
 ### Modified Capabilities
 

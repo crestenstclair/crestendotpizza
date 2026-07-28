@@ -48,15 +48,15 @@
 - [x] 7.1 Add `wrangler.jsonc` for a static-assets-only Worker with `dist`, `auto-trailing-slash`, `404-page`, a pinned compatibility date, and no Worker script or asset binding.
 - [x] 7.2 Add repository-managed security and cache headers, ensuring the Content Security Policy supports only emitted assets and the optional Cloudflare Web Analytics beacon.
 - [x] 7.3 Deploy the migration branch to a new `workers.dev` preview and verify all known routes, TLS, headers, trailing slashes, cache behavior, and real 404 responses.
-- [ ] 7.4 Connect the GitHub repository to Workers Builds with `master` as production, enable non-production builds, configure build/deploy/version commands, and verify an isolated branch preview without promoting it.
-- [ ] 7.5 Confirm Cloudflare-managed build authorization works and scan committed configuration/history to ensure no API or GitHub credentials were added.
+- [ ] 7.4 Configure GitHub Actions with `master` as production, pull-request version previews, build/deploy/version commands, and verify an isolated branch preview without promoting it.
+- [ ] 7.5 Confirm GitHub-managed deployment authorization works and scan committed configuration/history to ensure no API or GitHub credentials were added.
 
 ## 8. Verify and Cut Over Production
 
 - [ ] 8.1 Compare the Cloudflare preview against the entire live-site baseline for route status, full prose, titles, dates, tags, internal links, metadata, feeds, assets, headers, and responsive presentation.
 - [x] 8.2 Record the last known-good Netlify deployment URL, disable Netlify repository auto-publishing, and confirm it remains directly reachable as a rollback target.
 - [x] 8.3 Remove Gatsby/React/Bulma/Sass, Netlify CMS/Git Gateway, `/admin`, Universal Analytics, Netlify configuration, unused starter components, demo assets, and obsolete fonts; then repeat all clean-build and preview checks.
-- [ ] 8.4 Merge the verified migration and confirm Workers Builds creates the expected production version while `cresten.pizza` still serves the prior site.
+- [ ] 8.4 Merge the verified migration and confirm GitHub Actions creates the expected production Worker version while `cresten.pizza` still serves the prior site.
 - [ ] 8.5 Attach `cresten.pizza` to the Worker, enforce valid HTTPS, optionally enable Cloudflare Web Analytics, and update/test the Content Security Policy if the beacon is enabled.
 - [ ] 8.6 Immediately smoke-test the apex-domain home, About, every legacy post and tag route, RSS, sitemap, headers, caching, and unknown-route status after cutover.
 - [ ] 8.7 Record the production Git commit and Cloudflare version, document both Cloudflare-version and Netlify-domain rollback procedures, and retain the old Netlify deployment for at least one observation week.

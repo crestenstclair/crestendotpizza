@@ -8,7 +8,7 @@
 ## Change Outline
 
 - **Adds:** Astro content collections, accessible reader pages, validated drafts, post scaffolding, browser-editor instructions, RSS, sitemap, metadata, and a real 404.
-- **Changes:** Git becomes the publishing interface; `master` deploys through Workers Builds and other branches receive isolated previews.
+- **Changes:** Git becomes the publishing interface; `master` deploys through GitHub Actions and pull requests receive isolated Cloudflare version previews.
 - **Removes:** Gatsby/React/Bulma/Sass, starter assets, Netlify CMS and `/admin`, Netlify configuration, and Universal Analytics.
 
 ## System Impact
