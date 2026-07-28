@@ -1,0 +1,21 @@
+---
+import PostSummary from '../components/PostSummary.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getBlogPosts } from '../lib/content';
+
+const posts = await getBlogPosts({ includeDrafts: import.meta.env.DEV });
+---
+
+<BaseLayout>
+  <section class="page-intro">
+    <p class="eyebrow">Cresten's pizza blog</p>
+    <h1>Latest stories</h1>
+    <p class="lede">
+      Notes on things I am learning, reading, playing, and thinking about.
+    </p>
+  </section>
+
+  <section class="post-list" aria-label="Posts">
+    {posts.map((post) => <PostSummary post={post} />)}
+  </section>
+</BaseLayout>

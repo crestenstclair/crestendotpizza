@@ -1,0 +1,23 @@
+---
+import type { BlogPost } from '../lib/content';
+import { formatDate, postPath } from '../lib/content-utils';
+import TagList from './TagList.astro';
+
+interface Props {
+  post: BlogPost;
+}
+
+const { post } = Astro.props;
+---
+
+<article class:list={['post-summary', { 'is-draft': post.data.draft }]}>
+  <div class="summary-heading">
+    <h2><a href={postPath(post)}>{post.data.title}</a></h2>
+    {post.data.draft && <span class="draft-label">Draft</span>}
+  </div>
+  <p class="post-meta">
+    <time datetime={post.data.pubDate}>{formatDate(post.data.pubDate)}</time>
+  </p>
+  <p>{post.data.description}</p>
+  <TagList tags={post.data.tags} />
+</article>

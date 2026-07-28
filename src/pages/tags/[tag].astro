@@ -1,0 +1,42 @@
+---
+import PostSummary from '../../components/PostSummary.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getTagGroups } from '../../lib/content';
+import type { TagGroup } from '../../lib/content-utils';
+import type { BlogPost } from '../../lib/content';
+
+interface Props {
+  group: TagGroup<BlogPost>;
+}
+
+export async function getStaticPaths() {
+  const groups = await getTagGroups({ includeDrafts: import.meta.env.DEV });
+
+  return groups.map((group) => ({
+    params: { tag: group.slug },
+    props: { group },
+  }));
+}
+
+const { group } = Astro.props;
+---
+
+<BaseLayout
+  title={`Posts tagged ${group.label}`}
+  description={`Writing tagged ${group.label} on Cresten's Pizza Blog.`}
+  canonicalPath={`/tags/${group.slug}/`}
+>
+  <section class="page-intro">
+    <p class="eyebrow">Topic</p>
+    <h1>{group.label}</h1>
+    <p class="lede">
+      {group.posts.length}
+      {group.posts.length === 1 ? 'story' : 'stories'} filed under this tag.
+    </p>
+    <p><a href="/tags/">Browse all tags</a></p>
+  </section>
+
+  <section class="post-list" aria-label={`Posts tagged ${group.label}`}>
+    {group.posts.map((post) => <PostSummary post={post} />)}
+  </section>
+</BaseLayout>

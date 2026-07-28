@@ -1,50 +1,55 @@
 {
-  "name": "gatsby-starter-netlify-cms",
-  "description": "Example Gatsby, and Netlify CMS project",
-  "version": "1.1.3",
-  "author": "Austin Green",
-  "dependencies": {
-    "bulma": "^0.7.0",
-    "gatsby": "^2.0.0",
-    "gatsby-plugin-google-analytics": "^2.0.13",
-    "gatsby-plugin-netlify": "^2.0.0",
-    "gatsby-plugin-netlify-cms": "^3.0.0",
-    "gatsby-plugin-react-helmet": "^3.0.0",
-    "gatsby-plugin-sass": "^2.0.1",
-    "gatsby-plugin-sharp": "^2.0.5",
-    "gatsby-remark-images": "^2.0.1",
-    "gatsby-remark-prismjs": "^3.1.4",
-    "gatsby-source-filesystem": "^2.0.1",
-    "gatsby-transformer-remark": "^2.1.15",
-    "gatsby-transformer-sharp": "^2.1.1",
-    "lodash": "^4.17.5",
-    "lodash-webpack-plugin": "^0.11.4",
-    "netlify-cms": "^2.1.1",
-    "node-sass": "^4.9.2",
-    "parcel-bundler": "^1.9.4",
-    "prismjs": "^1.15.0",
-    "prop-types": "^15.6.0",
-    "react": "^16.2.0",
-    "react-dom": "^16.4.1",
-    "react-helmet": "^5.2.0",
-    "uuid": "^3.2.1"
-  },
-  "keywords": [
-    "gatsby"
-  ],
+  "name": "crestendotpizza",
+  "version": "2.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Cresten St. Clair's static Markdown blog",
   "license": "MIT",
-  "main": "n/a",
+  "engines": {
+    "node": ">=24.0.0 <25"
+  },
+  "packageManager": "npm@11.16.0",
+  "allowScripts": {
+    "esbuild@0.28.1": true,
+    "fsevents@2.3.3": false,
+    "workerd@1.20260722.1": true
+  },
+  "overrides": {
+    "kind-of": "^6.0.3"
+  },
   "scripts": {
-    "start": "npm run develop",
-    "clean": "rimraf .cache public",
-    "build": "npm run clean && gatsby build",
-    "develop": "npm run clean && gatsby develop",
-    "serve": "gatsby serve",
-    "format": "prettier --trailing-comma es5 --no-semi --single-quote --write \"{gatsby-*.js,src/**/*.js}\"",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "astro dev",
+    "dev": "astro dev",
+    "check": "astro check && npm run validate:content",
+    "build": "npm run check && astro build && npm run validate:output",
+    "preview": "npm run build && wrangler dev",
+    "deploy": "npm run build && wrangler deploy",
+    "new:post": "node scripts/new-post.mjs",
+    "validate:content": "node scripts/validate-content.mjs",
+    "validate:output": "node scripts/validate-output.mjs && node scripts/check-links.mjs",
+    "validate:wrangler": "node scripts/validate-wrangler.mjs",
+    "validate:deployment": "node scripts/validate-deployment.mjs",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "lint": "prettier --check .",
+    "format": "prettier --write .",
+    "audit": "npm audit --audit-level=high",
+    "verify": "npm run lint && npm run audit && npm test && npm run build && npm run validate:wrangler"
+  },
+  "dependencies": {
+    "@astrojs/rss": "^4.0.19",
+    "@astrojs/sitemap": "^3.7.3",
+    "astro": "^7.1.4"
   },
   "devDependencies": {
-    "prettier": "^1.7.4",
-    "rimraf": "^2.6.2"
+    "@astrojs/check": "^0.9.10",
+    "@types/node": "^24.10.0",
+    "cheerio": "^1.2.0",
+    "gray-matter": "^4.0.3",
+    "prettier": "^3.9.6",
+    "prettier-plugin-astro": "^0.14.1",
+    "typescript": "^5.9.3",
+    "vitest": "^4.1.10",
+    "wrangler": "^4.114.0"
   }
 }

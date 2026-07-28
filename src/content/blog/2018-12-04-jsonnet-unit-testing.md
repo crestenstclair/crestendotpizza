@@ -1,0 +1,156 @@
+---
+title: Unit testing KSonnet components
+description: A quick look at unit testing KSonnet components
+pubDate: '2018-12-09'
+slug: 2018-12-04-jsonnet-unit-testing
+tags:
+  - ksonnet
+  - jsonnet
+  - kubernetes
+  - testing
+draft: false
+---
+## Why test KSonnet components?
+Whenever we develop code, we want to write tests to make it easy to refactor components, add new modules, and remove old ones. It is important that we verify that we are able to give the same input, and get the same output. We do not want to break more than we fix!
+
+One of the main advantages of the Ksonnet and JSonnet language is that it allows us to develop an API and abstractions for generating our Kubernetes manifests. 
+
+I feel that testing KSonnet components is especially important. By declaring the behaviour we expect out of a ksonnet component, we make refactoring our code much simpler. Otherwise we find ourselves eyeballing a large amount of YAML files, and nobody got time for that.
+
+## How do we implement unit testing in KSonnet?
+
+First, we create a directory in your `ksonnet` environment root: `tests`.
+
+Next, we add `(component_name)_test.libsonnet` files as we develop new components.
+
+Tests are `libsonnet` files. We write our ksonnet components as functions and provide an API for creating them.
+
+In order to properly test Ksonnet components, we must write our components with the assumption that we do not have access to the global Ksonnet variables `env` and `params`, and instead assume those will be passed into functions we declare.
+
+To declare the output we want from our Ksonnet components we use the `std.assertEqual` standard library functions. We `&&` these assertions together to ensure they are all evaluated.
+
+Finally, we make sure to output our component instance and test suite results. Otherwise the compiler will notice that these variables are not used, and will not bother to evaluate them.
+
+Example component and test. `k.libsonnet` and the ksonnet `components` directory must be in our jsonnet path.
+
+```javascript
+# components/example.libsonnet
+// Import KSonnet library
+local k = import "k.libsonnet";
+
+// Specify the import objects that we need
+local container = k.extensions.v1beta1.deployment.mixin.spec.template.spec.containersType;
+local depl = k.extensions.v1beta1.deployment;
+
+// Define containers
+    
+local new(_env, _params) = (
+local params = _env + _params.components.example;
+  local containers = [
+        container.new(params.name, params.image)
+  ];
+
+  local deployment = 
+      depl.new(params.name, params.replicas, containers, {app: params.name}); 
+);
+    
+
+# tests/example_test.libsonnet
+local componentToTest = import "./example.libsonnet";
+local name = "example_name";
+local image = "example_image";
+local replicas = "3";
+local instance = componentToTest.new({}, parmas);
+
+local params = {
+  components: {
+    example: {
+      name: name,
+      image: image,
+      replicas: replicas
+    }
+  }
+};
+
+local runTests(params) = (
+  local testResults = 
+    // Check to ensure deployment name matches up
+    std.assertEqual(instance.spec.metadata.name, name)
+  testResults
+);
+
+
+{
+  output: instance,
+  results: runTests(params),
+}
+```
+
+## Running our tests
+
+Our test runner is very lazy. It is a python script. It uses a python library called `invoke`. Invoke is an api for doing shell-things with python, similar to `fabric`.
+
+We give our test suite access to the jsonnet files available on `components` by passing the flag `--jpath ./components` to our call to `jsonnet`.
+
+Test runner code here:
+
+```python
+#! python
+from invoke import task
+from glob import glob
+import os
+import json
+
+
+@task
+def test(c):
+    print("Running jsonnet tests: ")
+    test_results = []
+    for root, sub_folders, files in os.walk("./tests"):
+        for file in files:
+            path = os.path.join(root, file)
+            result = c.run("jsonnet --jpath ./components " + path, hide='both', warn='True')
+            if result.ok:
+                print('.')
+                test_results.append(True)
+            else:
+                print(result.stderr)
+                test_results.append(False)
+
+    print_test_results(test_results)
+
+def print_test_results(test_results):
+    tests_successful = str(len([i for i in test_results if i]))
+    tests_failed = str(len([i for i in test_results if not i]))
+    print("Successful: " + tests_successful + " Failed: " + tests_failed + " Total : " + str(len(test_results)))
+
+
+@task
+def fmt(c):
+    print("Formatting...")
+    format_files(c, "./tests")
+    format_files(c, "./components")
+    print("Done.")
+
+
+def format_files(c, files_path):
+    for root, sub_folders, files in os.walk(files_path):
+        for file in files:
+            path = os.path.join(root, file)
+            result = c.run("jsonnet fmt " + path, hide='stdout').stdout
+            with open(path, "w+") as f:
+                f.write(result)
+```
+
+
+## NOTE
+
+My Ksonnet testing strategy has evolved from what I detail in this article. I will publish another one with new code eventually.
+
+A quick summary of my new strategy:
+
+- Use `jest`, and place a `__tests__` folder in my components folder
+- Write a test helper that will emit a jsonnet file that will build the component you are testing with all required parameters.
+- Call into the Jsonnet binary and capture the stdout
+- Parse the stdout: `JSON.parse(shell.stdout)`
+- Run tests against the output

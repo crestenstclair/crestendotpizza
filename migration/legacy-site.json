@@ -1,0 +1,144 @@
+{
+  "version": 1,
+  "capturedAt": "2026-07-27",
+  "productionOrigin": "https://cresten.pizza",
+  "sourceCommit": "4ddd541cd45a67e101b37ff27f67650b69783bdb",
+  "checksumNormalization": "Remove YAML frontmatter, normalize CRLF to LF, trim trailing whitespace at EOF, then append one LF.",
+  "hosting": {
+    "edge": "Cloudflare",
+    "originEvidence": [
+      "cache-status: Netlify Edge",
+      "x-nf-request-id response header"
+    ],
+    "nameservers": [
+      "daisy.ns.cloudflare.com",
+      "marty.ns.cloudflare.com"
+    ],
+    "netlifySiteName": "quirky-turing-d9c652",
+    "netlifySiteId": "05c42077-becd-43ad-a511-8da78e81142e",
+    "netlifyFallbackUrl": "https://quirky-turing-d9c652.netlify.app",
+    "netlifyBranchDeployUrl": "https://master--quirky-turing-d9c652.netlify.app",
+    "netlifyDeployId": "5ff2b9748f2d5e0007d6c113",
+    "netlifyDeployCommit": "4ddd541cd45a67e101b37ff27f67650b69783bdb",
+    "netlifyAdminUrl": "https://app.netlify.com/projects/quirky-turing-d9c652",
+    "netlifyGithubWebhookId": 58891029,
+    "netlifyGithubWebhookDisabledAt": "2026-07-27",
+    "fallbackDiscovery": "Netlify's public site record identified the current production deploy without authentication. Both direct Netlify hostnames returned the same home-page checksum as cresten.pizza, and every manifest route returned HTTP 200 on the fallback hostname on 2026-07-27. Cloudflare's exact proxied DNS record remains an authenticated pre-cutover check."
+  },
+  "pages": [
+    {
+      "type": "home",
+      "route": "/",
+      "status": 200,
+      "title": "Cresten's Pizza Blog"
+    },
+    {
+      "type": "about",
+      "route": "/about/",
+      "status": 200,
+      "title": "About Me",
+      "bodySha256": "79bc49e4ff724801894398dc837bb75a2423c5a8758a5ff28cd87a458324671b"
+    },
+    {
+      "type": "post",
+      "route": "/blog/2018-12-04-elixir-using-a-with-statement-to-control-a-pipeline/",
+      "status": 200,
+      "slug": "2018-12-04-elixir-using-a-with-statement-to-control-a-pipeline",
+      "title": "Elixir: Using a with statement to control a pipeline",
+      "pubDate": "2018-12-04",
+      "tags": ["elixir", "programming", "elixirlang", "syntax", "pipelines"],
+      "bodySha256": "9a7764e05e8cfd3d4937ebe3e770cb92018ad686f449f1285da6ce48fc43d5ff"
+    },
+    {
+      "type": "post",
+      "route": "/blog/2018-12-04-jsonnet-unit-testing/",
+      "status": 200,
+      "slug": "2018-12-04-jsonnet-unit-testing",
+      "title": "Unit testing KSonnet components",
+      "pubDate": "2018-12-09",
+      "tags": ["ksonnet", "jsonnet", "kubernetes", "testing"],
+      "bodySha256": "7adf67bd5f94914cc4fb451d64e1a80c5af7230e9d02ad51821d1932a21e3a00"
+    },
+    {
+      "type": "post",
+      "route": "/blog/2018-12-16-books-i-read-in-2018/",
+      "status": 200,
+      "slug": "2018-12-16-books-i-read-in-2018",
+      "title": "My 2018 in Review - Books",
+      "pubDate": "2018-12-16",
+      "tags": ["books"],
+      "bodySha256": "e8dc4ec8bb828486677c7aaa798e954c71c66d3d8d0bb0798fe033a74990c154"
+    },
+    {
+      "type": "post",
+      "route": "/blog/2018-12-16-video-games-i-played-in-2018/",
+      "status": 200,
+      "slug": "2018-12-16-video-games-i-played-in-2018",
+      "title": "My 2018 in Review - Video Games",
+      "pubDate": "2018-12-16",
+      "tags": ["2018", "VideoGames"],
+      "bodySha256": "f414d1d7df5da2918cdcee6a7898ef886899efb354082a557ebc18efcda69c77"
+    },
+    {
+      "type": "post",
+      "route": "/blog/2019-01-30-2019-goals-and-plans/",
+      "status": 200,
+      "slug": "2019-01-30-2019-goals-and-plans",
+      "title": "My Goals and Plans for 2019",
+      "pubDate": "2019-01-30",
+      "tags": ["plans", "goals", "reading"],
+      "bodySha256": "dae5a696c7f71f07fa703a918de8731a9449191dae315d3f3714cc5767221eea",
+      "allowedBodyTransform": "Add an accessible title and lazy-loading attribute to the preserved Airtable iframe; prose is unchanged.",
+      "migratedBodySha256": "f8d219b5e8f51662bb6d702654366fb9e341c545cfe97ec97bbdfa1da6891639"
+    },
+    {
+      "type": "post",
+      "route": "/blog/2019-02-05-january-2019-book-reviews/",
+      "status": 200,
+      "slug": "2019-02-05-january-2019-book-reviews",
+      "title": "January 2019 Book Reviews",
+      "pubDate": "2019-02-05",
+      "tags": ["reading", "books"],
+      "bodySha256": "74a422b2f934c651cc86468b69a0101447f129d6612af04ca9a52dd338ffd4cd"
+    },
+    {
+      "type": "post",
+      "route": "/blog/2020-01-03-rocksmith-review/",
+      "status": 200,
+      "slug": "2020-01-03-rocksmith-review",
+      "title": "Rocksmith 2014 Review",
+      "sourceDate": "2021-01-35",
+      "observedLiveDate": "2021-02-04",
+      "pubDate": "2021-01-03",
+      "dateEvidence": "Created by commit b1e5b390e9a6a20d7dfb96687c1665a590a0afd8 at 2021-01-03T22:29:55-08:00; the body describes a 2021 resolution.",
+      "tags": ["guitar"],
+      "bodySha256": "6302f2257631d18390867c051e2f4354991d9b6692ed5a3134c8d9a308d37dbf",
+      "allowedBodyTransform": "Remove the duplicate leading H1 because the page layout renders the same title.",
+      "migratedBodySha256": "27369612cad776dd9c000e2d608efce95cca28665ba47a531afc6445693f6c00"
+    }
+  ],
+  "tagRoutes": [
+    "/tags/2018/",
+    "/tags/books/",
+    "/tags/elixir/",
+    "/tags/elixirlang/",
+    "/tags/goals/",
+    "/tags/guitar/",
+    "/tags/jsonnet/",
+    "/tags/ksonnet/",
+    "/tags/kubernetes/",
+    "/tags/pipelines/",
+    "/tags/plans/",
+    "/tags/programming/",
+    "/tags/reading/",
+    "/tags/syntax/",
+    "/tags/testing/",
+    "/tags/video-games/"
+  ],
+  "assets": {
+    "publishedContentLocal": [],
+    "oldChromeLocal": ["src/img/github-icon.svg"],
+    "retainedDirectRoutes": ["/keybase.txt"],
+    "remoteEmbeds": ["https://airtable.com/embed/shrNsId7JOxiyZXQQ"]
+  }
+}

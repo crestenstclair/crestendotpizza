@@ -1,10 +1,20 @@
 {
-  "extends": [
-    "config:base"
-  ],
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": ["config:recommended"],
+  "timezone": "America/Los_Angeles",
+  "schedule": ["before 6am on the first day of the month"],
+  "minimumReleaseAge": "7 days",
+  "prConcurrentLimit": 2,
   "rangeStrategy": "replace",
+  "packageRules": [
+    {
+      "matchManagers": ["npm"],
+      "matchUpdateTypes": ["minor", "patch", "pin", "digest"],
+      "groupName": "monthly npm maintenance"
+    }
+  ],
   "lockFileMaintenance": {
     "enabled": true,
-    "extends": "schedule:weekly"
+    "schedule": ["before 6am on the first day of the month"]
   }
 }

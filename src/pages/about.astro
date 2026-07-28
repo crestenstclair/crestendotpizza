@@ -1,0 +1,29 @@
+---
+import { getCollection, render } from 'astro:content';
+
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const page = (await getCollection('pages')).find(
+  (entry) => entry.data.slug === 'about'
+);
+
+if (!page) throw new Error('Missing About page content');
+
+const { Content } = await render(page);
+---
+
+<BaseLayout
+  title={page.data.title}
+  description={page.data.description}
+  canonicalPath="/about/"
+>
+  <article class="article narrow-article">
+    <header class="article-header">
+      <p class="eyebrow">Hello</p>
+      <h1>{page.data.title}</h1>
+    </header>
+    <div class="prose">
+      <Content />
+    </div>
+  </article>
+</BaseLayout>

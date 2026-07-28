@@ -1,0 +1,33 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getTagGroups } from '../../lib/content';
+
+const groups = await getTagGroups({ includeDrafts: import.meta.env.DEV });
+---
+
+<BaseLayout
+  title="Tags"
+  description="Browse Cresten's writing by topic."
+  canonicalPath="/tags/"
+>
+  <section class="page-intro">
+    <p class="eyebrow">Topics</p>
+    <h1>Browse all tags</h1>
+    <p class="lede">
+      A loose index of the things that have caught my attention.
+    </p>
+  </section>
+
+  <ul class="tag-directory">
+    {
+      groups.map((group) => (
+        <li>
+          <a href={`/tags/${group.slug}/`}>{group.label}</a>
+          <span>
+            {group.posts.length} {group.posts.length === 1 ? 'post' : 'posts'}
+          </span>
+        </li>
+      ))
+    }
+  </ul>
+</BaseLayout>

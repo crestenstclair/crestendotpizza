@@ -1,0 +1,70 @@
+---
+import { render } from 'astro:content';
+
+import TagList from '../../components/TagList.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getBlogPosts, type BlogPost } from '../../lib/content';
+import { formatDate, postPath } from '../../lib/content-utils';
+
+interface Props {
+  post: BlogPost;
+}
+
+export async function getStaticPaths() {
+  const posts = await getBlogPosts({ includeDrafts: import.meta.env.DEV });
+
+  return posts.map((post) => ({
+    params: { slug: post.data.slug },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+---
+
+<BaseLayout
+  title={post.data.title}
+  description={post.data.description}
+  canonicalPath={postPath(post)}
+  type="article"
+  pubDate={post.data.pubDate}
+  noindex={post.data.draft}
+>
+  <article class="article">
+    <header class="article-header">
+      {
+        post.data.draft && (
+          <p class="draft-banner">Local draft preview — not published</p>
+        )
+      }
+      <p class="eyebrow">Story</p>
+      <h1>{post.data.title}</h1>
+      <p class="lede">{post.data.description}</p>
+      <p class="post-meta">
+        Published <time datetime={post.data.pubDate}
+          >{formatDate(post.data.pubDate)}</time
+        >
+        {
+          post.data.updatedDate && (
+            <>
+              {' · Updated '}
+              <time datetime={post.data.updatedDate}>
+                {formatDate(post.data.updatedDate)}
+              </time>
+            </>
+          )
+        }
+      </p>
+    </header>
+
+    <div class="prose">
+      <Content />
+    </div>
+
+    <footer class="article-footer">
+      <h2>Filed under</h2>
+      <TagList tags={post.data.tags} />
+    </footer>
+  </article>
+</BaseLayout>
