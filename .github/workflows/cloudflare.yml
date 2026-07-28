@@ -3,8 +3,6 @@ name: Cloudflare
 on:
   pull_request:
   push:
-    branches:
-      - master
 
 permissions:
   contents: read
@@ -37,18 +35,32 @@ jobs:
       - name: Verify site
         run: npm run verify
 
-      - name: Upload isolated pull-request preview
-        if: github.event_name == 'pull_request'
+      - name: Prepare preview address
+        id: preview
+        if: github.event_name == 'pull_request' || (github.event_name == 'push' && github.ref != 'refs/heads/master')
+        env:
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+        run: |
+          if [[ "$GITHUB_EVENT_NAME" == "pull_request" ]]; then
+            preview_alias="pr-$PR_NUMBER"
+          else
+            preview_alias="branch-$GITHUB_RUN_ID"
+          fi
+          echo "alias=$preview_alias" >> "$GITHUB_OUTPUT"
+          echo "url=https://$preview_alias-crestendotpizza.crestenn.workers.dev" >> "$GITHUB_OUTPUT"
+
+      - name: Upload isolated non-production preview
+        if: github.event_name == 'pull_request' || (github.event_name == 'push' && github.ref != 'refs/heads/master')
         run: >-
           npx wrangler versions upload
-          --preview-alias "pr-${{ github.event.pull_request.number }}"
-          --tag "${{ github.event.pull_request.head.sha }}"
-          --message "Pull request #${{ github.event.pull_request.number }}"
+          --preview-alias "${{ steps.preview.outputs.alias }}"
+          --tag "${{ github.event.pull_request.head.sha || github.sha }}"
+          --message "Preview for ${{ github.ref_name }}"
 
-      - name: Validate pull-request preview
-        if: github.event_name == 'pull_request'
+      - name: Validate non-production preview
+        if: github.event_name == 'pull_request' || (github.event_name == 'push' && github.ref != 'refs/heads/master')
         env:
-          PREVIEW_URL: https://pr-${{ github.event.pull_request.number }}-crestendotpizza.crestenn.workers.dev
+          PREVIEW_URL: ${{ steps.preview.outputs.url }}
         run: |
           for attempt in 1 2 3 4 5; do
             npm run validate:deployment -- "$PREVIEW_URL" && exit 0
