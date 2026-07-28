@@ -2,6 +2,18 @@
   "$schema": "./node_modules/wrangler/config-schema.json",
   "name": "crestendotpizza",
   "compatibility_date": "2026-07-27",
+  "workers_dev": true,
+  "preview_urls": true,
+  "routes": [
+    {
+      "pattern": "cresten.pizza",
+      "custom_domain": true,
+    },
+    {
+      "pattern": "www.cresten.pizza",
+      "custom_domain": true,
+    },
+  ],
   "assets": {
     "directory": "./dist",
     "html_handling": "auto-trailing-slash",

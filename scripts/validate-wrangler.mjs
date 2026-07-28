@@ -5,6 +5,25 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const repositoryRoot = fileURLToPath(new URL('..', import.meta.url));
+const wranglerSource = await readFile(
+  path.join(repositoryRoot, 'wrangler.jsonc'),
+  'utf8'
+);
+const wrangler = JSON.parse(wranglerSource.replace(/,\s*([}\]])/g, '$1'));
+const expectedDomains = ['cresten.pizza', 'www.cresten.pizza'];
+const configuredDomains = (wrangler.routes ?? [])
+  .filter((route) => route.custom_domain === true)
+  .map((route) => route.pattern)
+  .sort();
+
+if (wrangler.workers_dev !== true || wrangler.preview_urls !== true) {
+  throw new Error('workers.dev and version preview URLs must remain enabled');
+}
+if (JSON.stringify(configuredDomains) !== JSON.stringify(expectedDomains)) {
+  throw new Error(
+    `Expected custom domains ${expectedDomains.join(', ')}, received ${configuredDomains.join(', ') || 'none'}`
+  );
+}
 
 async function availablePort() {
   return new Promise((resolve, reject) => {
@@ -114,7 +133,7 @@ try {
   }
 
   console.log(
-    'Validated Wrangler static routing, security/cache headers, trailing slashes, and custom 404 behavior.'
+    'Validated Wrangler domains/previews, static routing, security/cache headers, trailing slashes, and custom 404 behavior.'
   );
 } finally {
   child.kill('SIGTERM');

@@ -81,7 +81,7 @@ The Rocksmith post's impossible `2021-01-35` date was corrected to `2021-01-03` 
 
 ## Cloudflare Workers setup
 
-The checked-in `wrangler.jsonc` deploys only `dist/` through Workers Static Assets. `_headers` supplies browser security policy, revalidating HTML/feed caching, and immutable caching for fingerprinted assets.
+The checked-in `wrangler.jsonc` deploys only `dist/` through Workers Static Assets. It keeps `cresten.pizza`, `www.cresten.pizza`, `workers.dev`, and version preview URLs attached to the Worker. `_headers` supplies browser security policy, revalidating HTML/feed caching, and immutable caching for fingerprinted assets.
 
 The Worker is named `crestendotpizza`. [`.github/workflows/cloudflare.yml`](.github/workflows/cloudflare.yml) runs the same checks as local verification and then:
 
@@ -91,7 +91,7 @@ The Worker is named `crestendotpizza`. [`.github/workflows/cloudflare.yml`](.git
 
 The repository stores `CLOUDFLARE_API_TOKEN` as an Actions secret and `CLOUDFLARE_ACCOUNT_ID` as an Actions variable. The token needs only the scoped Cloudflare Workers permissions used by Wrangler. Never commit either credential; `.env` is ignored and is only for authenticated local administration.
 
-Before attaching `cresten.pizza`, deploy to a `workers.dev` preview and complete the parity/cutover checklist in [`migration/rollback.md`](migration/rollback.md). Do not retire Netlify until the new deployment has completed its observation window.
+The production domains were attached only after the `workers.dev` preview completed the parity/cutover checklist in [`migration/rollback.md`](migration/rollback.md). Do not retire Netlify until the new deployment has completed its observation window.
 
 Validate any preview before promotion:
 

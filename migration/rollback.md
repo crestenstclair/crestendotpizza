@@ -61,7 +61,7 @@ The temporary preview may expire and is not a rollback target. Re-run the same v
 - Result: the `master` workflow passed repository verification, deployed the Worker, and passed the complete remote validator at `https://crestendotpizza.crestenn.workers.dev`.
 - Isolation check: after the deployment, `https://cresten.pizza` still returned `cache-status: Netlify Edge` and the apex DNS record still matched the captured proxied Netlify CNAME.
 
-## Required before production cutover
+## Pre-cutover record
 
 Before changing the domain:
 
@@ -72,16 +72,32 @@ Before changing the domain:
 
 These four checks are a hard cutover gate. Do not attach the domain to the Worker until the values are recorded below.
 
-- Previous Cloudflare DNS record: apex CNAME `cresten.pizza` → `quirky-turing-d9c652.netlify.com`, proxied, automatic TTL; record ID `db353f84f2235c1a011f17e250210fef`
+- Previous Cloudflare DNS records:
+  - apex CNAME `cresten.pizza` → `quirky-turing-d9c652.netlify.com`, proxied, automatic TTL; record ID `db353f84f2235c1a011f17e250210fef`
+  - `www` CNAME `www.cresten.pizza` → `quirky-turing-d9c652.netlify.com`, proxied, automatic TTL; record ID `7b5ef7aa74515fa6994d328f55c84e08`
 - Netlify fallback URL: `https://quirky-turing-d9c652.netlify.app`
 - Netlify site ID: `05c42077-becd-43ad-a511-8da78e81142e`
 
+## Production cutover
+
+- Cutover completed at `2026-07-27T18:49:14-07:00` (`2026-07-28T01:49:14Z`).
+- Initial custom-domain version: `99a9a152-83d6-4a4c-ac11-6c857fc37d37`.
+- Cloudflare replaced the two Netlify CNAMEs with proxied `AAAA 100::` Custom Domain records:
+  - `cresten.pizza`, record ID `d94e491c6d83866ee3839ea50ce8b992`
+  - `www.cresten.pizza`, record ID `a80bd468749d902860ffa9c52b799edf`
+- Both Google Workspace MX records and the Google site-verification TXT record remained unchanged.
+- `www` and `workers.dev` passed the complete 31-route/25-redirect deployment validator. The apex passed the same 31 exact response-body comparisons, 25 redirects, custom 404, security headers, HTML revalidation, and immutable asset-cache checks when pinned directly to the new Cloudflare edge while the local negative DNS cache expired.
+- Cloudflare and Google public resolvers returned the Cloudflare anycast addresses for both hostnames. No production response contained a Netlify request header.
+- All 25 legacy routes remained HTTP 200 at the direct Netlify fallback URL after cutover.
+- Observation window started at cutover. Do not decommission Netlify before `2026-08-03T18:49:14-07:00`, and only do so after an incident-free review plus explicit owner confirmation.
+
 ## Rollback during the observation window
 
-1. Restore the recorded Cloudflare DNS record or custom-domain target.
-2. Confirm `https://cresten.pizza/` and every legacy manifest route serves the Netlify version.
-3. If ongoing Netlify builds are needed, reactivate GitHub webhook `58891029` from repository settings or with `gh api --method PATCH repos/crestenstclair/crestendotpizza/hooks/58891029 -F active=true`.
-4. Keep the failed Worker version available for diagnosis; do not delete deployment history.
+1. Revert the custom-domain configuration commit and deploy it so Cloudflare removes the apex and `www` Worker Custom Domains.
+2. Recreate the two proxied, automatic-TTL CNAMEs recorded above, both targeting `quirky-turing-d9c652.netlify.com`.
+3. Confirm `https://cresten.pizza/`, `https://www.cresten.pizza/`, and every legacy manifest route serves the Netlify version.
+4. If ongoing Netlify builds are needed, reactivate GitHub webhook `58891029` from repository settings or with `gh api --method PATCH repos/crestenstclair/crestendotpizza/hooks/58891029 -F active=true`.
+5. Keep the failed Worker version available for diagnosis; do not delete deployment history.
 
 ## Rollback after Netlify retirement
 
