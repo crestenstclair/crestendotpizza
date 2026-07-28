@@ -56,7 +56,7 @@
 - [x] 8.1 Compare the Cloudflare preview against the entire live-site baseline for route status, full prose, titles, dates, tags, internal links, metadata, feeds, assets, headers, and responsive presentation.
 - [x] 8.2 Record the last known-good Netlify deployment URL, disable Netlify repository auto-publishing, and confirm it remains directly reachable as a rollback target.
 - [x] 8.3 Remove Gatsby/React/Bulma/Sass, Netlify CMS/Git Gateway, `/admin`, Universal Analytics, Netlify configuration, unused starter components, demo assets, and obsolete fonts; then repeat all clean-build and preview checks.
-- [ ] 8.4 Merge the verified migration and confirm GitHub Actions creates the expected production Worker version while `cresten.pizza` still serves the prior site.
+- [x] 8.4 Merge the verified migration and confirm GitHub Actions creates the expected production Worker version while `cresten.pizza` still serves the prior site.
 - [ ] 8.5 Attach `cresten.pizza` to the Worker, enforce valid HTTPS, optionally enable Cloudflare Web Analytics, and update/test the Content Security Policy if the beacon is enabled.
 - [ ] 8.6 Immediately smoke-test the apex-domain home, About, every legacy post and tag route, RSS, sitemap, headers, caching, and unknown-route status after cutover.
 - [ ] 8.7 Record the production Git commit and Cloudflare version, document both Cloudflare-version and Netlify-domain rollback procedures, and retain the old Netlify deployment for at least one observation week.

@@ -53,6 +53,14 @@ The temporary preview may expire and is not a rollback target. Re-run the same v
 - Public pages contain zero script elements, all anchors have destinations, and the browser reported no warnings or errors, so reading and navigation do not depend on JavaScript.
 - The content-integrity, generated-output, and remote deployment validators establish full prose, title, date, tag, route, metadata, feed, asset, header, cache, redirect, and 404 parity across the complete baseline.
 
+### Production Worker before domain cutover
+
+- Production Git commit: `0d294754fc9ddcd9d28ba36daaa1fd8fb64d7616`
+- Cloudflare version: `6bbf15ad-2fd4-4215-8ba7-a0cabaea6dcf`
+- GitHub Actions run: `https://github.com/crestenstclair/crestendotpizza/actions/runs/30320366022`
+- Result: the `master` workflow passed repository verification, deployed the Worker, and passed the complete remote validator at `https://crestendotpizza.crestenn.workers.dev`.
+- Isolation check: after the deployment, `https://cresten.pizza` still returned `cache-status: Netlify Edge` and the apex DNS record still matched the captured proxied Netlify CNAME.
+
 ## Required before production cutover
 
 Before changing the domain:
